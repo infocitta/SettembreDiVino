@@ -27,10 +27,24 @@
     "Poi":[
       {
 	"ID":"W1",
-        "Name":"WC",
+        "Name":"WC #1",
         "Icon":"wc.png",
         "Latitude":"42.633224",
         "Longitude":"11.664856"
+      },
+      {
+	"ID":"W2",
+        "Name":"WC #2",
+        "Icon":"wc.png",
+        "Latitude":"42.633536",
+        "Longitude":"11.664496"
+      },
+      {
+	"ID":"W3",
+        "Name":"WC #3",
+        "Icon":"wc.png",
+        "Latitude":"42.633433",
+        "Longitude":"11.666011"
       }       
     ]
   }
