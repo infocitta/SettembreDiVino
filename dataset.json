@@ -3,12 +3,14 @@
     "Category":"Cantine",
     "Poi":[
       {
+	"ID":"C1",
         "Name":"Pistoni Roventi",
         "Icon":"1.png",
         "Latitude":"42.633819",
         "Longitude":"11.667091"
       },
       {
+	"ID":"C4",
         "Name":"La Sbornia",
         "Icon":"4.png",
         "Latitude":"42.633411",
@@ -20,6 +22,7 @@
     "Category":"Servizi",
     "Poi":[
       {
+	"ID":"W1",
         "Name":"WC",
         "Icon":"wc.png",
         "Latitude":"42.633224",
