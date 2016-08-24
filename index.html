@@ -27,7 +27,6 @@
 <script>
 var app = angular.module('myApp', ['ngMap']);
 app.controller('MyCtrl', function($scope,$http,NgMap) {
-	$scope.chicago = new google.maps.LatLng(41.850033, -87.6500523);
 	NgMap.getMap().then(function(map) {
 		$scope.map = map;
 	});
@@ -39,16 +38,20 @@ app.controller('MyCtrl', function($scope,$http,NgMap) {
 
 	$scope.showPOI = function(event, poi) {
 		$scope.selectedPOI = poi;
-		$scope.map.showInfoWindow('myInfoWindow', this);
+		$scope.map.showInfoWindow('myPOI', poi.ID);
 	};
-
+	$scope.showPOI2 = function(event, poi) {
+		$scope.selectedPOI = poi;
+		$scope.map.showInfoWindow('myPOI2', poi.ID);
+	};
 	$scope.pop = function(poi) {
 		$scope.selectedPOI = poi;
-		$scope.map.showInfoWindow('myInfoWindow', this);
+		$scope.map.setCenter(new google.maps.LatLng(poi.Latitude,poi.Longitude));
+		$scope.map.showInfoWindow('myPOI', poi.ID);
 	};
 	
 	$scope.click = function(poi) {
-		$scope.map.setCenter(new google.maps.LatLng(poi.Latitude,p.Longitude));
+		$scope.map.setCenter(new google.maps.LatLng(poi.Latitude,poi.Longitude));
 		};
 	});
 </script>
@@ -79,7 +82,7 @@ app.controller('MyCtrl', function($scope,$http,NgMap) {
       <tr ng-repeat="p in pois[0].Poi">
 		<td><img ng-src="{{p.Icon}}"></td>
         <td>{{p.Name}}</td>
-        <td><button type="button" class="btn btn-primary" ng-click="pop(p)">Visualizza</button></td>
+        <td><button type="button" class="btn btn-primary" ng-click="pop(p)" data-dismiss="modal">Visualizza</button></td>
       </tr>
     </tbody>
   </table>
@@ -92,38 +95,49 @@ app.controller('MyCtrl', function($scope,$http,NgMap) {
 </div>
 
 
-
-
-
-
-
-
-
-
   <ng-map center="42.6364666,11.6686312" zoom="16"  map-type-control="false" default-style="false">
  
-    <info-window id="myInfoWindow" >
+    <info-window id="myPOI" >
       <div ng-non-bindable>
-        <h4>{{selectedPOI.Name}}</h4>
-		<a href="https://www.google.com/maps?q={{selectedPOI.Latitude}},{{selectedPOI.Longitude}}" class="btn btn-info" role="button">Posizione</a>
-        <a href="https://www.google.com/maps/dir/Current+Location/{{selectedPOI.Latitude}},{{selectedPOI.Longitude}}" class="btn btn-info" role="button">Indicazioni</a>
+        <h4>{{selectedPOI.Name}}</h4>	
+		<a ng-href="https://www.google.com/maps?q={{selectedPOI.Latitude}},{{selectedPOI.Longitude}}" class="btn btn-info" role="button">Posizione</a>
+        <a ng-href="https://www.google.com/maps/dir/Current+Location/{{selectedPOI.Latitude}},{{selectedPOI.Longitude}}" class="btn btn-info" role="button">Indicazioni</a>
+		<a ng-href="{{selectedPOI.Link}}" class="btn btn-info" role="button">Sito</a>
+		<br />
+		<a ng-href="{{selectedPOI.Image}}"><img ng-src="{{selectedPOI.Image}}" alt="{{selectedPOI.Name}}" style="width:300px;padding:5px;"/></a>
       </div> 
     </info-window>
-	 <marker position="current" animation="Animation.BOUNCE"></marker>
+    <info-window id="myPOI2" >
+      <div ng-non-bindable>
+        <h4>{{selectedPOI.Name}}</h4>	
+		<a ng-href="https://www.google.com/maps?q={{selectedPOI.Latitude}},{{selectedPOI.Longitude}}" class="btn btn-info" role="button">Posizione</a>
+        <a ng-href="https://www.google.com/maps/dir/Current+Location/{{selectedPOI.Latitude}},{{selectedPOI.Longitude}}" class="btn btn-info" role="button">Indicazioni</a>
+      </div> 
+    </info-window>	
+	 <marker position="current" animation="Animation.BOUNCE" title="Tua posizione"></marker>
 	<marker ng-repeat="p in pois[0].Poi" 
 		position="{{p.Latitude}},{{p.Longitude}}"
 		title="{{p.Name}}"
 		icon="{{p.Icon}}"
-		id="POI_{{$index}}"
+		id="{{p.ID}}"
 		on-click="showPOI(event, p)"
 		>
 	</marker>
-  
+ 	<marker ng-repeat="p in pois[1].Poi" 
+		position="{{p.Latitude}},{{p.Longitude}}"
+		title="{{p.Name}}"
+		icon="{{p.Icon}}"
+		id="{{p.ID}}"
+		on-click="showPOI2(event, p)"
+		>
+	</marker> 
   
     <custom-control id="title" position="TOP_LEFT" index="1">
       <div style="padding: 10px;"><h4>Settembre Di Vino<h4><small>Pitigliano</small></div>
     </custom-control>    
-  
+     <custom-control id="title" position="BOTTOM_LEFT" index="1">
+      <div style="padding: 10px;">Created by Paolo Fisco @ipersoft</div>
+    </custom-control>  
     <custom-control id="home2" position="TOP_RIGHT" index="2">
       <div style="padding: 10px;"><button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Elenco cantine</button></div>
     </custom-control> 
