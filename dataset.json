@@ -5,6 +5,8 @@
       {
 	"ID":"C1",
         "Name":"Pistoni Roventi",
+        "Image":"pistoniroventi.jpg",
+        "Link":"https://www.facebook.com/PistoniRoventiPitigliano",
         "Icon":"1.png",
         "Latitude":"42.633819",
         "Longitude":"11.667091"
@@ -12,6 +14,8 @@
       {
 	"ID":"C4",
         "Name":"La Sbornia",
+        "Image":"lasbornia.jpg",
+        "Link":"https://www.facebook.com/Cantina-la-Sbornia-338638789618898",
         "Icon":"4.png",
         "Latitude":"42.633411",
         "Longitude":"11.663321"
