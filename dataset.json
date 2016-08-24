@@ -1,0 +1,30 @@
+[
+  {
+    "Category":"Cantine",
+    "Poi":[
+      {
+        "Name":"Pistoni Roventi",
+        "Icon":"1.png",
+        "Latitude":"42.633819",
+        "Longitude":"11.667091"
+      },
+      {
+        "Name":"La Sbornia",
+        "Icon":"4.png",
+        "Latitude":"42.633411",
+        "Longitude":"11.663321"
+      }       
+    ]
+  },
+  {
+    "Category":"Servizi",
+    "Poi":[
+      {
+        "Name":"WC",
+        "Icon":"wc.png",
+        "Latitude":"42.633224",
+        "Longitude":"11.664856"
+      }       
+    ]
+  }
+]
