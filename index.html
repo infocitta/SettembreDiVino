@@ -35,10 +35,14 @@ app.controller('MyCtrl', function($scope,$http,NgMap) {
 	$http.get("https://raw.githubusercontent.com/infocitta/SettembreDiVino/gh-pages/dataset.json")
 		.then(function(response) {
 		$scope.pois = response.data;
-		console.debug($scope.pois);
 	});	
 
 	$scope.showPOI = function(event, poi) {
+		$scope.selectedPOI = poi;
+		$scope.map.showInfoWindow('myInfoWindow', this);
+	};
+
+	$scope.pop = function(poi) {
 		$scope.selectedPOI = poi;
 		$scope.map.showInfoWindow('myInfoWindow', this);
 	};
@@ -63,7 +67,22 @@ app.controller('MyCtrl', function($scope,$http,NgMap) {
 		<h4 class="modal-title">Lista cantine</h4>
 	</div>
 	<div class="modal-body">
-
+ <table class="table">
+    <thead>
+      <tr>
+		<th></th>
+        <th>Cantina</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="p in pois[0].Poi">
+		<td><img ng-src="{{p.Icon}}"></td>
+        <td>{{p.Name}}</td>
+        <td><button type="button" class="btn btn-primary" ng-click="pop(p)">Visualizza</button></td>
+      </tr>
+    </tbody>
+  </table>
 	</div>
 	<div class="modal-footer">
 		<button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
@@ -86,10 +105,11 @@ app.controller('MyCtrl', function($scope,$http,NgMap) {
     <info-window id="myInfoWindow" >
       <div ng-non-bindable>
         <h4>{{selectedPOI.Name}}</h4>
+		<a href="https://www.google.com/maps?q={{selectedPOI.Latitude}},{{selectedPOI.Longitude}}" class="btn btn-info" role="button">Posizione</a>
         <a href="https://www.google.com/maps/dir/Current+Location/{{selectedPOI.Latitude}},{{selectedPOI.Longitude}}" class="btn btn-info" role="button">Indicazioni</a>
       </div> 
     </info-window>
- 
+	 <marker position="current" animation="Animation.BOUNCE"></marker>
 	<marker ng-repeat="p in pois[0].Poi" 
 		position="{{p.Latitude}},{{p.Longitude}}"
 		title="{{p.Name}}"
@@ -101,7 +121,7 @@ app.controller('MyCtrl', function($scope,$http,NgMap) {
   
   
     <custom-control id="title" position="TOP_LEFT" index="1">
-      <div style="padding: 10px;"><h3>Settembre Di Vino 2016<h3><small>Pitigliano</small></div>
+      <div style="padding: 10px;"><h4>Settembre Di Vino<h4><small>Pitigliano</small></div>
     </custom-control>    
   
     <custom-control id="home2" position="TOP_RIGHT" index="2">
