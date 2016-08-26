@@ -12,6 +12,15 @@
         "Longitude":"11.667091"
       },
       {
+	"ID":"C3",
+        "Name":"Imperiale",
+        "Image":"",
+        "Link":"https://www.facebook.com/CantinaImperiale",
+        "Icon":"3.png",
+        "Latitude":"42.633136",
+        "Longitude":"11.664504"
+      },
+      {
 	"ID":"C4",
         "Name":"La Sbornia",
         "Image":"lasbornia.jpg",
@@ -19,6 +28,15 @@
         "Icon":"4.png",
         "Latitude":"42.633411",
         "Longitude":"11.663321"
+      },
+      {
+	"ID":"C5",
+        "Name":"I Serpi Vecchi",
+        "Image":"",
+        "Link":"https://www.facebook.com/Cantina-dei-Serpi-Vecchi-1520933728118278",
+        "Icon":"5.png",
+        "Latitude":"42.633410",
+        "Longitude":"11.664166"
       }       
     ]
   },
